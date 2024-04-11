@@ -2,13 +2,19 @@ console.log("Starting the server...");
 const express = require("express");
 const { DynamoDBClient, QueryCommand } = require("@aws-sdk/client-dynamodb");
 const cors = require("cors"); //the cors middleware
+const { config } = require("dotenv");
 
+
+config({
+  path : "./config/config.env",
+})
+ 
 //  DynamoDB client using the AWS SDK
 const client = new DynamoDBClient({
   region: "ap-south-1",
   credentials: {
-    accessKeyId: 'AKIA2AXGIULGA4MOVWFJ',
-    secretAccessKey: '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',
+    accessKeyId: process.env.ACCESSKEYID,
+    secretAccessKey: process.env.SECRETACCESSKEY,
   },
   })
 
